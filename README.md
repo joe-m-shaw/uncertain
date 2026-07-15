@@ -1,0 +1,23 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# uncertain
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+uncertain is a package for automating uncertainty of measurement
+calculations. These calculations are used in the validation of genetic
+laboratory tests to communicate the variability within an assay.
+
+uncertain is currently under development.
+
+## Installation
+
+You can install the development version of uncertain from
+[GitHub](https://github.com/) with:
+
+``` r
+# install.packages("pak")
+pak::pak("joe-m-shaw/uncertain")
+```
