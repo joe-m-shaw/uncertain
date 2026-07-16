@@ -48,17 +48,17 @@ test_df <- data.frame(
 group_sd(df = test_df, measurement_variable = dosage, sample, gene)
 #> $output_df
 #> # A tibble: 9 × 6
-#>   sample gene      sd     n n_minus_1      z
-#>    <dbl> <chr>  <dbl> <int>     <dbl>  <dbl>
-#> 1      1 gene1 0.105      6         5 0.0549
-#> 2      1 gene2 0.123      6         5 0.0762
-#> 3      1 gene3 0.0662     6         5 0.0219
-#> 4      2 gene1 0.126      6         5 0.0793
-#> 5      2 gene2 0.0996     6         5 0.0496
-#> 6      2 gene3 0.0699     6         5 0.0245
-#> 7      3 gene1 0.113      6         5 0.0640
-#> 8      3 gene2 0.117      6         5 0.0684
-#> 9      3 gene3 0.132      6         5 0.0869
+#>   sample gene      sd     n n_minus_1 sum_squares
+#>    <dbl> <chr>  <dbl> <int>     <dbl>       <dbl>
+#> 1      1 gene1 0.105      6         5      0.0549
+#> 2      1 gene2 0.123      6         5      0.0762
+#> 3      1 gene3 0.0662     6         5      0.0219
+#> 4      2 gene1 0.126      6         5      0.0793
+#> 5      2 gene2 0.0996     6         5      0.0496
+#> 6      2 gene3 0.0699     6         5      0.0245
+#> 7      3 gene1 0.113      6         5      0.0640
+#> 8      3 gene2 0.117      6         5      0.0684
+#> 9      3 gene3 0.132      6         5      0.0869
 #> 
 #> $pooled_sd
 #> [1] 0.1080771
