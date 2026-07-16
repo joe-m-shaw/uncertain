@@ -43,10 +43,12 @@ group_sd <- function(df, measurement_variable, ... ) {
     dplyr::summarise(sd = stats::sd( {{ measurement_variable }} ),
                      n = dplyr::n(),
                      n_minus_1 = n-1,
-                     z = (n_minus_1)*sd^2,
-                     .groups = "drop")
+                     .groups = "drop") |>
+    dplyr::mutate(sum_squares = sum_squares(stdev = sd,
+                                            degrees_freedom = n_minus_1))
 
-  pooled_sd <- sqrt(sum(output_df$z) / (sum(output_df$n_minus_1)))
+  pooled_sd <- uncertain::pool_sd(sum_squares = sum(output_df$sum_squares),
+                       sum_degrees_freedom = sum(output_df$n_minus_1))
 
   output_list <- list(
     "output_df" = output_df,
