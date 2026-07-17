@@ -32,12 +32,6 @@ Basic Mass Calibrations
 
 \examples{
 
-test_df <- data.frame(
-"sample" = rep(x = c(1, 2, 3), each = 3*3),
-"replicate" = rep(seq(1,6,by = 1), each = 3, times = 3),
-"gene" = rep(x = c("gene1", "gene2", "gene3"), times = 3*6),
-"dosage" = runif(n = 54, min = 1.8, max = 2.2))
-
-group_sd(df = test_df, measurement_variable = dosage, sample, gene)
+group_sd(df = data_cnv, measurement_variable = dosage, sample, gene)
 
 }
