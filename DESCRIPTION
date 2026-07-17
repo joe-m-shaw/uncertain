@@ -18,5 +18,11 @@ Imports:
     tibble
 URL: https://joe-m-shaw.github.io/uncertain/
 Suggests: 
+    knitr,
+    quarto,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+VignetteBuilder: quarto
+Depends: 
+    R (>= 3.5)
+LazyData: true
