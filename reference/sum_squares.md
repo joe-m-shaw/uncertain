@@ -5,7 +5,7 @@ Calculate the sum of squares
 ## Usage
 
 ``` r
-sum_squares(degrees_freedom, stdev)
+sum_squares(degrees_freedom, standard_deviation)
 ```
 
 ## Arguments
@@ -14,7 +14,7 @@ sum_squares(degrees_freedom, stdev)
 
   The degrees of freedom within a group
 
-- stdev:
+- standard_deviation:
 
   The standard deviation within a group
 

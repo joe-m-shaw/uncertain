@@ -66,9 +66,255 @@
 
 
 
-    <div class="cell">
+    <p><code>uncertain</code> contains fake datasets to help with calculating assay variation. For example, data_cnv includes made-up data for an assay which measures the dosage of 3 genes (<em>BRCA1</em>, <em>CDKN2A</em> and <em>EGFR</em>) for 3 samples, each of which has been tested 6 times.</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://joe-m-shaw.github.io/uncertain/">uncertain</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data_cnv</span><span class="op">)</span></span>
+<span><span class="co">#&gt;     sample replicate  gene   dosage</span></span>
+<span><span class="co">#&gt; 1 Sample 1         1 BRCA1 1.957516</span></span>
+<span><span class="co">#&gt; 2 Sample 1         2 BRCA1 2.057661</span></span>
+<span><span class="co">#&gt; 3 Sample 1         3 BRCA1 1.981795</span></span>
+<span><span class="co">#&gt; 4 Sample 1         4 BRCA1 2.076603</span></span>
+<span><span class="co">#&gt; 5 Sample 1         5 BRCA1 2.088093</span></span>
+<span><span class="co">#&gt; 6 Sample 1         6 BRCA1 1.909111</span></span></code></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure><p><img src="assay-variation_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A key aspect of assay development is determining the variability within the assay. <code>uncertain</code> contains the <code>group_stats</code> function which calculates the statistical variation within a dataset based on groupings supplied by the user.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="../reference/group_stats.html">group_stats</a></span><span class="op">(</span><span class="va">data_cnv</span>,</span>
+<span>            measurement_variable <span class="op">=</span> <span class="va">dosage</span>,</span>
+<span>            <span class="va">sample</span>, <span class="va">gene</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<table class="table caption-top">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 14%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 9%">
+<col style="width: 11%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">gene</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">standard_deviation</th>
+<th style="text-align: right;">conf_int_95_min</th>
+<th style="text-align: right;">conf_int_95_max</th>
+<th style="text-align: right;">replicates</th>
+<th style="text-align: right;">degrees_freedom</th>
+<th style="text-align: right;">sum_squares</th>
+<th style="text-align: right;">standard_error</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Sample 1</td>
+<td style="text-align: left;">BRCA1</td>
+<td style="text-align: right;">2.0117967</td>
+<td style="text-align: right;">0.0728223</td>
+<td style="text-align: right;">1.9353743</td>
+<td style="text-align: right;">2.0882191</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.0265155</td>
+<td style="text-align: right;">0.0297296</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sample 1</td>
+<td style="text-align: left;">CDKN2A</td>
+<td style="text-align: right;">2.0279581</td>
+<td style="text-align: right;">0.0449833</td>
+<td style="text-align: right;">1.9807510</td>
+<td style="text-align: right;">2.0751651</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.0101175</td>
+<td style="text-align: right;">0.0183643</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sample 1</td>
+<td style="text-align: left;">EGFR</td>
+<td style="text-align: right;">1.9847034</td>
+<td style="text-align: right;">0.0689010</td>
+<td style="text-align: right;">1.9123962</td>
+<td style="text-align: right;">2.0570105</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.0237367</td>
+<td style="text-align: right;">0.0281287</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sample 2</td>
+<td style="text-align: left;">BRCA1</td>
+<td style="text-align: right;">2.0499848</td>
+<td style="text-align: right;">0.0501495</td>
+<td style="text-align: right;">1.9973561</td>
+<td style="text-align: right;">2.1026135</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.0125749</td>
+<td style="text-align: right;">0.0204735</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sample 2</td>
+<td style="text-align: left;">CDKN2A</td>
+<td style="text-align: right;">0.4979573</td>
+<td style="text-align: right;">0.0444423</td>
+<td style="text-align: right;">0.4513179</td>
+<td style="text-align: right;">0.5445966</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.0098756</td>
+<td style="text-align: right;">0.0181435</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sample 2</td>
+<td style="text-align: left;">EGFR</td>
+<td style="text-align: right;">2.0284635</td>
+<td style="text-align: right;">0.0695623</td>
+<td style="text-align: right;">1.9554623</td>
+<td style="text-align: right;">2.1014647</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.0241946</td>
+<td style="text-align: right;">0.0283987</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sample 3</td>
+<td style="text-align: left;">BRCA1</td>
+<td style="text-align: right;">1.9694007</td>
+<td style="text-align: right;">0.0444302</td>
+<td style="text-align: right;">1.9227741</td>
+<td style="text-align: right;">2.0160273</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.0098702</td>
+<td style="text-align: right;">0.0181385</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sample 3</td>
+<td style="text-align: left;">CDKN2A</td>
+<td style="text-align: right;">1.9590939</td>
+<td style="text-align: right;">0.0279047</td>
+<td style="text-align: right;">1.9298098</td>
+<td style="text-align: right;">1.9883781</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.0038934</td>
+<td style="text-align: right;">0.0113920</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sample 3</td>
+<td style="text-align: left;">EGFR</td>
+<td style="text-align: right;">7.9688437</td>
+<td style="text-align: right;">0.1372104</td>
+<td style="text-align: right;">7.8248502</td>
+<td style="text-align: right;">8.1128372</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.0941335</td>
+<td style="text-align: right;">0.0560159</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><code>group_stats</code> also calculates the pooled standard deviation across all the sample groupings, which quantifies the overall variation within the assay itself.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="../reference/group_stats.html">group_stats</a></span><span class="op">(</span><span class="va">data_cnv</span>,</span>
+<span>            measurement_variable <span class="op">=</span> <span class="va">dosage</span>,</span>
+<span>            <span class="va">sample</span>, <span class="va">gene</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="co">#&gt; [1] 0.06910729</span></span></code></pre></div>
+</div>
+<p>The grouping step is very important. If the data are not grouped at the gene level, then biological variation is misinterpreted as assay variation. For example, the <em>CDKN2A</em> deletion within sample 2 and the <em>EGFR</em> amplification within sample 3 leads to higher standard deviations calculated for these samples compared to sample 1, and the pooled standard deviation is higher.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="../reference/group_stats.html">group_stats</a></span><span class="op">(</span><span class="va">data_cnv</span>,</span>
+<span>            measurement_variable <span class="op">=</span> <span class="va">dosage</span>,</span>
+<span>            <span class="va">sample</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<table class="table caption-top">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 9%">
+<col style="width: 12%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">sample</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">standard_deviation</th>
+<th style="text-align: right;">conf_int_95_min</th>
+<th style="text-align: right;">conf_int_95_max</th>
+<th style="text-align: right;">replicates</th>
+<th style="text-align: right;">degrees_freedom</th>
+<th style="text-align: right;">sum_squares</th>
+<th style="text-align: right;">standard_error</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Sample 1</td>
+<td style="text-align: right;">2.008153</td>
+<td style="text-align: right;">0.0623567</td>
+<td style="text-align: right;">1.977143</td>
+<td style="text-align: right;">2.039162</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">0.0661021</td>
+<td style="text-align: right;">0.0146976</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sample 2</td>
+<td style="text-align: right;">1.525468</td>
+<td style="text-align: right;">0.7495116</td>
+<td style="text-align: right;">1.152745</td>
+<td style="text-align: right;">1.898192</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">9.5500492</td>
+<td style="text-align: right;">0.1766616</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sample 3</td>
+<td style="text-align: right;">3.965779</td>
+<td style="text-align: right;">2.9137496</td>
+<td style="text-align: right;">2.516806</td>
+<td style="text-align: right;">5.414753</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">144.3289282</td>
+<td style="text-align: right;">0.6867774</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="../reference/group_stats.html">group_stats</a></span><span class="op">(</span><span class="va">data_cnv</span>,</span>
+<span>            measurement_variable <span class="op">=</span> <span class="va">dosage</span>,</span>
+<span>            <span class="va">sample</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="co">#&gt; [1] 1.737392</span></span></code></pre></div>
 </div>
 
 
