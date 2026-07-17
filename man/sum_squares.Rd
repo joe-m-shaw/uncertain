@@ -4,12 +4,12 @@
 \alias{sum_squares}
 \title{Calculate the sum of squares}
 \usage{
-sum_squares(degrees_freedom, stdev)
+sum_squares(degrees_freedom, standard_deviation)
 }
 \arguments{
 \item{degrees_freedom}{The degrees of freedom within a group}
 
-\item{stdev}{The standard deviation within a group}
+\item{standard_deviation}{The standard deviation within a group}
 }
 \value{
 The squared standard deviation multiplied by degrees of freedom

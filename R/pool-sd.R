@@ -6,7 +6,6 @@
 #' @returns The pooled standard deviation
 #' @export
 #'
-#' @examples
 pool_sd <- function(sum_squares, sum_degrees_freedom) {
 
   pooled_sd <- sqrt(sum_squares / sum_degrees_freedom)

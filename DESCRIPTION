@@ -11,15 +11,16 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Imports: 
     dplyr,
-    janitor,
-    readr,
     rlang,
-    stats,
-    tibble
+    stats
 URL: https://joe-m-shaw.github.io/uncertain/
 Suggests: 
     knitr,
     quarto,
+    ggplot2,
+    janitor,
+    readr,
+    tibble,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: quarto

@@ -12,6 +12,82 @@ knitr:
 
 ```{r}
 #| label: setup
+#| include: FALSE
+
 library(uncertain)
+library(ggplot2)
+
 ```
+
+`uncertain` contains fake datasets to help with calculating assay variation.
+For example, data_cnv includes made-up data for an assay which measures the 
+dosage of 3 genes (*BRCA1*, *CDKN2A* and *EGFR*) for 3 samples, each of which 
+has been tested 6 times.
+
+```{r}
+#| include: TRUE
+
+head(data_cnv)
+
+```
+
+```{r}
+#| echo: FALSE
+
+ggplot(data_cnv, aes(x = gene, y = dosage)) +
+  geom_jitter(shape = 21, width = 0.1) +
+  theme_bw() +
+  facet_wrap(~sample) +
+  labs(title = "CNV testing repeat data",
+       x = "Gene", y = "Dosage") +
+  scale_y_continuous(limits = c(0, 10),
+                     breaks = seq(0, 10, by = 2))
+
+```
+
+A key aspect of assay development is determining the variability within the 
+assay. 
+`uncertain` contains the `group_stats` function which calculates the statistical
+variation within a dataset based on groupings supplied by the user.
+
+```{r}
+
+knitr::kable(group_stats(data_cnv,
+            measurement_variable = dosage,
+            sample, gene)[[1]])
+
+```
+
+`group_stats` also calculates the pooled standard deviation across all the sample
+groupings, which quantifies the overall variation within the assay itself.
+
+```{r}
+
+group_stats(data_cnv,
+            measurement_variable = dosage,
+            sample, gene)[[2]]
+
+```
+
+The grouping step is very important. If the data are not grouped at the gene
+level, then biological variation is misinterpreted as assay variation.
+For example, the *CDKN2A* deletion within sample 2 and the *EGFR* amplification 
+within sample 3 leads to higher
+standard deviations calculated for these samples compared to sample 1, and the 
+pooled standard deviation is higher.
+
+```{r}
+
+knitr::kable(group_stats(data_cnv,
+            measurement_variable = dosage,
+            sample)[[1]])
+
+group_stats(data_cnv,
+            measurement_variable = dosage,
+            sample)[[2]]
+```
+
+
+
+
 
