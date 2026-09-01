@@ -52,9 +52,70 @@ replicate.</p>
     </div>
     <div class="section level2">
     <h2 id="source">Source<a class="anchor" aria-label="anchor" href="#source"></a></h2>
-    <p>Dosage results are randomly generated with R.</p>
+    <p>Dosage results are randomly generated with R. The code for generating
+the data is saved in the data-raw folder.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">data_cnv</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      sample replicate   gene    dosage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  Sample 1         1  BRCA1 1.9575155</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  Sample 1         2  BRCA1 2.0576610</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  Sample 1         3  BRCA1 1.9817954</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  Sample 1         4  BRCA1 2.0766035</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  Sample 1         5  BRCA1 2.0880935</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  Sample 1         6  BRCA1 1.9091113</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  Sample 1         1 CDKN2A 2.0056211</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  Sample 1         2 CDKN2A 2.0784838</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  Sample 1         3 CDKN2A 2.0102870</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 Sample 1         4 CDKN2A 1.9913229</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 Sample 1         5 CDKN2A 2.0913667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12 Sample 1         6 CDKN2A 1.9906668</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 Sample 1         1   EGFR 2.0355141</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14 Sample 1         2   EGFR 2.0145267</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 Sample 1         3   EGFR 1.9205849</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16 Sample 1         4   EGFR 2.0799650</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17 Sample 1         5   EGFR 1.9492175</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18 Sample 1         6   EGFR 1.9084119</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19 Sample 2         1  BRCA1 1.9655841</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20 Sample 2         2  BRCA1 2.0909007</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21 Sample 2         3  BRCA1 2.0779079</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22 Sample 2         4  BRCA1 2.0385607</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23 Sample 2         5  BRCA1 2.0281014</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24 Sample 2         6  BRCA1 2.0988540</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25 Sample 2         1 CDKN2A 0.5311412</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26 Sample 2         2 CDKN2A 0.5417061</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27 Sample 2         3 CDKN2A 0.5088132</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28 Sample 2         4 CDKN2A 0.5188284</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29 Sample 2         5 CDKN2A 0.4578319</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30 Sample 2         6 CDKN2A 0.4294227</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31 Sample 2         1   EGFR 2.0926048</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32 Sample 2         2   EGFR 2.0804598</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33 Sample 2         3   EGFR 2.0381411</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34 Sample 2         4   EGFR 2.0590935</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35 Sample 2         5   EGFR 1.9049227</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36 Sample 2         6   EGFR 1.9955592</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37 Sample 3         1  BRCA1 2.0516919</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38 Sample 3         2  BRCA1 1.9432816</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39 Sample 3         3  BRCA1 1.9636362</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40 Sample 3         4  BRCA1 1.9463252</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41 Sample 3         5  BRCA1 1.9285600</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42 Sample 3         6  BRCA1 1.9829093</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43 Sample 3         1 CDKN2A 1.9827449</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44 Sample 3         2 CDKN2A 1.9737691</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45 Sample 3         3 CDKN2A 1.9304889</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46 Sample 3         4 CDKN2A 1.9277612</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47 Sample 3         5 CDKN2A 1.9466068</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48 Sample 3         6 CDKN2A 1.9931925</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49 Sample 3         1   EGFR 7.9063891</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50 Sample 3         2   EGFR 8.1431311</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51 Sample 3         3   EGFR 7.8183325</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52 Sample 3         4   EGFR 7.9768800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53 Sample 3         5   EGFR 8.1195699</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54 Sample 3         6   EGFR 7.8487597</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
