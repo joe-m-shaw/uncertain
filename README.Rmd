@@ -18,11 +18,56 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-uncertain is a package for automating uncertainty of measurement calculations. 
+`uncertain` is a package for performing uncertainty of measurement calculations. 
 These calculations are used in the validation of genetic laboratory tests to 
 communicate the variability within an assay.
 
-uncertain is currently under development.
+However, the specific calculations required are sometimes unclear, and there is
+a lack of worked examples relating to genomic testing. 
+`uncertain` aims to address this by providing functions for key calculations, and
+example datasets which reflect the data structures encountered in 
+genomic laboratories.
+
+## Calculating uncertainty
+
+`uncertain` is based on the instructions for pooled standard 
+deviation analysis described in the publication "Selected Laboratory and Measurement 
+Practices and Procedures to Support Basic Mass Calibrations" from the National
+Institute of Standards and Technology 
+([NISTIR 6969](https://nvlpubs.nist.gov/nistpubs/ir/2019/NIST.IR.6969-2019.pdf)).
+The functions are tested using example calculations from the 
+[NIST Engineering Statistics Handbook](https://www.itl.nist.gov/div898/handbook/mpc/section4/mpc441.htm).
+
+`uncertain` includes example datasets for copy number variant and single
+nucleotide variant repeatability data.
+
+```{r}
+
+library(uncertain)
+library(ggplot2)
+
+ggplot(data_cnv, aes(x = gene, y = dosage)) +
+  geom_jitter(shape = 21, width = 0.1) +
+  theme_bw() +
+  facet_wrap(~sample) +
+  labs(title = "CNV testing repeat data",
+       x = "Gene", y = "Dosage") +
+  scale_y_continuous(limits = c(0, 10),
+                     breaks = seq(0, 10, by = 2))
+
+```
+
+The key function is `group_stats` which calculates statistical variation within
+the dataset based on grouping variables (i.e. sample, gene) provided by the
+user.
+
+```{r}
+
+knitr::kable(group_stats(data_cnv,
+            measurement_variable = dosage,
+            sample, gene)[[1]])
+
+```
 
 ## Installation
 
