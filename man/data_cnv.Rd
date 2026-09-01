@@ -10,12 +10,16 @@ replicate, gene and dosage. Dosages for 3 genes are provided for each sample
 replicate.
 }
 \source{
-Dosage results are randomly generated with R.
+Dosage results are randomly generated with R. The code for generating
+the data is saved in the data-raw folder.
 }
 \usage{
 data_cnv
 }
 \description{
 Copy number variant repeat data
+}
+\examples{
+data_cnv
 }
 \keyword{datasets}

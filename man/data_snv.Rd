@@ -11,12 +11,16 @@ variants per sample, and different numbers of replicates per sample. Some
 variants are different and some are shared between samples.
 }
 \source{
-Frequency results are randomly generated with R.
+Frequency results are randomly generated with R.The code for generating
+the data is saved in the data-raw folder.
 }
 \usage{
 data_snv
 }
 \description{
 Single nucleotide variant repeat data
+}
+\examples{
+data_snv
 }
 \keyword{datasets}

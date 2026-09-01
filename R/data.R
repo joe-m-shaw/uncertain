@@ -4,7 +4,11 @@
 #' replicate, gene and dosage. Dosages for 3 genes are provided for each sample
 #' replicate.
 #'
-#' @source Dosage results are randomly generated with R.
+#' @source Dosage results are randomly generated with R. The code for generating
+#' the data is saved in the data-raw folder.
+#'
+#' @examples
+#' data_cnv
 "data_cnv"
 
 #' Single nucleotide variant repeat data
@@ -14,5 +18,9 @@
 #' variants per sample, and different numbers of replicates per sample. Some
 #' variants are different and some are shared between samples.
 #'
-#' @source Frequency results are randomly generated with R.
+#' @source Frequency results are randomly generated with R.The code for generating
+#' the data is saved in the data-raw folder.
+#'
+#' @examples
+#' data_snv
 "data_snv"
