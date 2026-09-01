@@ -42,11 +42,11 @@ group_stats <- function(df, measurement_variable, ... ) {
       conf_int_95_min = stats::t.test(x = {{ measurement_variable }}, conf.level = 0.95)$conf.int[1],
       conf_int_95_max = stats::t.test(x = {{ measurement_variable }}, conf.level = 0.95)$conf.int[2],
       replicates = dplyr::n(),
-      degrees_freedom = replicates-1,
+      degrees_freedom = .data$replicates-1,
       .groups = "drop") |>
-    dplyr::mutate(sum_squares = sum_squares(standard_deviation = standard_deviation,
-                                            degrees_freedom = degrees_freedom),
-                  standard_error = standard_deviation /sqrt(replicates))
+    dplyr::mutate(sum_squares = sum_squares(standard_deviation = .data$standard_deviation,
+                                            degrees_freedom = .data$degrees_freedom),
+                  standard_error = .data$standard_deviation /sqrt(.data$replicates))
 
   pooled_sd <- uncertain::pool_sd(sum_squares = sum(output_df$sum_squares),
                                   sum_degrees_freedom = sum(output_df$degrees_freedom))
