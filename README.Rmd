@@ -42,6 +42,7 @@ The functions are tested using example calculations from the
 nucleotide variant repeatability data.
 
 ```{r}
+#| warning: FALSE
 
 library(uncertain)
 library(ggplot2)
@@ -63,9 +64,20 @@ user.
 
 ```{r}
 
-knitr::kable(group_stats(data_cnv,
+cnv_variation <- group_stats(data_cnv,
             measurement_variable = dosage,
-            sample, gene)[[1]])
+            sample, gene)
+
+knitr::kable(cnv_variation[[1]])
+
+```
+
+`group_stats` also calculates the pooled standard deviation for the whole
+dataset.
+
+```{r}
+
+cnv_variation[[2]]
 
 ```
 

@@ -13,6 +13,7 @@ knitr:
 ```{r}
 #| label: setup
 #| include: FALSE
+#| warning: FALSE
 
 library(uncertain)
 library(ggplot2)
