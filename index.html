@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">uncertain</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,10 +63,8 @@
 <p><code>uncertain</code> is based on the instructions for pooled standard deviation analysis described in the publication “Selected Laboratory and Measurement Practices and Procedures to Support Basic Mass Calibrations” from the National Institute of Standards and Technology (<a href="https://nvlpubs.nist.gov/nistpubs/ir/2019/NIST.IR.6969-2019.pdf" class="external-link">NISTIR 6969</a>). The functions are tested using example calculations from the <a href="https://www.itl.nist.gov/div898/handbook/mpc/section4/mpc441.htm" class="external-link">NIST Engineering Statistics Handbook</a>.</p>
 <p><code>uncertain</code> includes example datasets for copy number variant and single nucleotide variant repeatability data.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://joe-m-shaw.github.io/uncertain/">uncertain</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://joe-m-shaw.github.io/uncertain/">uncertain</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: package 'ggplot2' was built under R version 4.4.3</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">data_cnv</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gene</span>, y <span class="op">=</span> <span class="va">dosage</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html" class="external-link">geom_jitter</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">21</span>, width <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span></span>
@@ -80,9 +78,11 @@
 <p>The key function is <code>group_stats</code> which calculates statistical variation within the dataset based on grouping variables (i.e. sample, gene) provided by the user.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="reference/group_stats.html">group_stats</a></span><span class="op">(</span><span class="va">data_cnv</span>,</span>
+<span><span class="va">cnv_variation</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/group_stats.html">group_stats</a></span><span class="op">(</span><span class="va">data_cnv</span>,</span>
 <span>            measurement_variable <span class="op">=</span> <span class="va">dosage</span>,</span>
-<span>            <span class="va">sample</span>, <span class="va">gene</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<span>            <span class="va">sample</span>, <span class="va">gene</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">cnv_variation</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="10%">
@@ -219,12 +219,17 @@
 </tr>
 </tbody>
 </table>
+<p><code>group_stats</code> also calculates the pooled standard deviation for the whole dataset.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">cnv_variation</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="co">#&gt; [1] 0.06910729</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>You can install the development version of uncertain from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"joe-m-shaw/uncertain"</span><span class="op">)</span></span></code></pre></div>
 </div>

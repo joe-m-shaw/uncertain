@@ -8,13 +8,13 @@
 ## Citation
 
 Shaw J (2026). *uncertain: Perform Uncertainty of Measurement
-Calculations in R*. R package version 0.0.0.9000,
+Calculations in R*. R package version 1.0.0,
 <https://joe-m-shaw.github.io/uncertain/>.
 
     @Manual{,
       title = {uncertain: Perform Uncertainty of Measurement Calculations in R},
       author = {Joe M. Shaw},
       year = {2026},
-      note = {R package version 0.0.0.9000},
+      note = {R package version 1.0.0},
       url = {https://joe-m-shaw.github.io/uncertain/},
     }

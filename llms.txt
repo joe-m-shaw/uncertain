@@ -26,10 +26,8 @@ nucleotide variant repeatability data.
 
 ``` r
 
-
 library(uncertain)
 library(ggplot2)
-#> Warning: package 'ggplot2' was built under R version 4.4.3
 
 ggplot(data_cnv, aes(x = gene, y = dosage)) +
   geom_jitter(shape = 21, width = 0.1) +
@@ -50,9 +48,11 @@ provided by the user.
 ``` r
 
 
-knitr::kable(group_stats(data_cnv,
+cnv_variation <- group_stats(data_cnv,
             measurement_variable = dosage,
-            sample, gene)[[1]])
+            sample, gene)
+
+knitr::kable(cnv_variation[[1]])
 ```
 
 | sample | gene | mean | standard_deviation | conf_int_95_min | conf_int_95_max | replicates | degrees_freedom | sum_squares | standard_error |
@@ -66,6 +66,16 @@ knitr::kable(group_stats(data_cnv,
 | Sample 3 | BRCA1 | 1.9694007 | 0.0444302 | 1.9227741 | 2.0160273 | 6 | 5 | 0.0098702 | 0.0181385 |
 | Sample 3 | CDKN2A | 1.9590939 | 0.0279047 | 1.9298098 | 1.9883781 | 6 | 5 | 0.0038934 | 0.0113920 |
 | Sample 3 | EGFR | 7.9688437 | 0.1372104 | 7.8248502 | 8.1128372 | 6 | 5 | 0.0941335 | 0.0560159 |
+
+`group_stats` also calculates the pooled standard deviation for the
+whole dataset.
+
+``` r
+
+
+cnv_variation[[2]]
+#> [1] 0.06910729
+```
 
 ## Installation
 
