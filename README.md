@@ -4,6 +4,9 @@
 # uncertain
 
 <!-- badges: start -->
+
+[![Codecov test
+coverage](https://codecov.io/gh/joe-m-shaw/uncertain/graph/badge.svg)](https://app.codecov.io/gh/joe-m-shaw/uncertain)
 <!-- badges: end -->
 
 `uncertain` is a package for performing uncertainty of measurement
