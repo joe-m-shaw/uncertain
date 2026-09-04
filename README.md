@@ -36,18 +36,7 @@ nucleotide variant repeatability data.
 ``` r
 library(uncertain)
 library(ggplot2)
-
-ggplot(data_cnv, aes(x = gene, y = dosage)) +
-  geom_jitter(shape = 21, width = 0.1) +
-  theme_bw() +
-  facet_wrap(~sample) +
-  labs(title = "CNV testing repeat data",
-       x = "Gene", y = "Dosage") +
-  scale_y_continuous(limits = c(0, 10),
-                     breaks = seq(0, 10, by = 2))
 ```
-
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
 The key function is `group_stats` which calculates statistical variation
 within the dataset based on grouping variables (i.e. sample, gene)
